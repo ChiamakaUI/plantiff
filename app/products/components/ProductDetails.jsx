@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { ACTION_TYPES } from "@/app/reducer/reducer";
 import useCounter from "@/app/hooks/useCounter";
 import Image from "next/image";
+import { urlFor } from '@/app/lib/sanityImageUrl';
 const ProductDetails = ({ name, image, price, id, description }) => {
   const { state, dispatch } = useCartContext();
   const { count, increaseCount, decreaseCount } = useCounter();
@@ -34,14 +35,14 @@ const ProductDetails = ({ name, image, price, id, description }) => {
     <div className="w-[90%] mx-auto mt-6 p-2 lg:flex flex-row lg:h-[650px] lg:w-[78%] lg:relative dark:text-white lg:justify-between">
       <div className="lg:p-4 lg:w-[45%]">
         <Image
-          src={`http://127.0.0.1:1337${image}`}
+          src={urlFor(image).url()}
           width={357}
           height={384}
           alt={name}
           className="mx-auto rounded-lg lg:hidden"
         />
         <Image
-          src={`http://127.0.0.1:1337${image}`}
+          src={urlFor(image).url()}
           width={525}
           height={600}
           alt={name}

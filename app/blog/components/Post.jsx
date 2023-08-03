@@ -1,10 +1,12 @@
 import Image from "next/image";
+import { urlFor } from '@/app/lib/sanityImageUrl';
 
 const Post = ({ title, desc, image }) => {
   return (
     <div className="w-[350px] mx-auto p-2.5 shadow-2xl my-2.5 lg:mx-2 md:mx-2 dark:text-white dark:bg-[#161616] rounded-md">
       <Image
-        src={`http://127.0.0.1:1337${image}`}
+        // src={`http://127.0.0.1:1337${image}`}
+        src={urlFor(image).url()}
         alt="blog-post"
         height={150}
         width={150}

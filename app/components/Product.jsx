@@ -4,8 +4,10 @@ import { useCartContext } from "../context/cart";
 import { ACTION_TYPES } from "../reducer/reducer";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
+import { urlFor } from '../lib/sanityImageUrl';
 const Product = ({ name, image, price, id }) => {
   const { state, dispatch } = useCartContext();
+  // console.log(image);
 
   const addToCart = (id) => {
     // console.log(id)
@@ -33,7 +35,7 @@ const Product = ({ name, image, price, id }) => {
       <Link href={`/products/${id}`}>
         <div>
           <Image
-            src={`http://127.0.0.1:1337${image}`}
+            src={urlFor(image).url()}
             alt="plant"
             width={150}
             height={150}

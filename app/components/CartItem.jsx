@@ -6,6 +6,7 @@ import Counter from "./Counter";
 import { useCartContext } from "../context/cart";
 import { ACTION_TYPES } from "../reducer/reducer";
 import useCounter from "../hooks/useCounter";
+import { urlFor } from '../lib/sanityImageUrl';
 
 const CartItem = ({ product, deleteFunc }) => {
   const { count, increaseCount, decreaseCount } = useCounter();
@@ -24,7 +25,8 @@ const CartItem = ({ product, deleteFunc }) => {
       <div className="w-[92%] mx-auto flex flex-row justify-between md:hidden lg:hidden my-3.5">
         <Image
           // src={product?.image}
-          src={`http://127.0.0.1:1337${product?.image}`}
+          // src={`http://127.0.0.1:1337${product?.image}`}
+          src={urlFor(product?.image).url()}
           className="min-w-[100px] max-w-[100px] h-[95px]"
           height={100}
           width={95}
@@ -54,7 +56,8 @@ const CartItem = ({ product, deleteFunc }) => {
       <div className="w-[92%] lg:w-[85%]  mx-auto hidden md:flex lg:flex flex-row justify-between my-8">
         <div className="flex flex-row w-[60%]">
           <Image
-            src={`http://127.0.0.1:1337${product?.image}`}
+            // src={`http://127.0.0.1:1337${product?.image}`}
+            src={urlFor(product?.image).url()}
             className="max-w-[100px] min-w-[100px] h-[95px]"
             height={100}
             width={95}

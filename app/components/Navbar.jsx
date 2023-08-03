@@ -9,13 +9,12 @@ import SideMenu from "./SideMenu";
 import Cart from "./Cart";
 import ToggleIcon from "./ToggleIcon";
 import { useCartContext } from "../context/cart";
-import {  BsFillCircleFill } from "react-icons/bs";
-
+import { BsFillCircleFill } from "react-icons/bs";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  const { state } = useCartContext()
+  const { state } = useCartContext();
   return (
     <>
       <div className="font-serif flex flex-row items-center justify-between p-4 lg:hidden my-3.5 dark:text-white">
@@ -35,16 +34,16 @@ const Navbar = () => {
         </div>
 
         <div className="relative">
-              <BsFillCircleFill
-                className={`text-[8px] text-red-600 ${
-                  state.length === 0 ? "hidden" : ""
-                }`}
-              />
-        <MdOutlineShoppingCart
-          className="text-3xl cursor-pointer"
-          onClick={() => setShowCart(true)}
-        />
-          </div>
+          <BsFillCircleFill
+            className={`text-[8px] text-red-600 ${
+              state.length === 0 ? "hidden" : ""
+            }`}
+          />
+          <MdOutlineShoppingCart
+            className="text-3xl cursor-pointer"
+            onClick={() => setShowCart(true)}
+          />
+        </div>
       </div>
       <div className="font-serif hidden lg:flex flex-row items-center justify-between font-merriweather p-3 w-[80%] mx-auto my-6 dark:text-white">
         <div className="flex flex-row items-center text-[#F59300] font-mono">
@@ -61,19 +60,19 @@ const Navbar = () => {
           <FiSearch className="text-3xl" />
           {/* <input type="text" placeholder="Search..." className="w-[80%] p-1 focus:outline-none"/> */}
           <div className="relative">
-              <p
-                className={`absolute right-px bottom-6 text-sm ${
-                  state.length === 0 ? "hidden" : ""
-                }`}
-              >
-                {state.length}
-              </p>
-          <MdOutlineShoppingCart
-            className="text-3xl cursor-pointer"
-            onClick={() => setShowCart(true)}
-          />
+            <p
+              className={`absolute right-px bottom-6 text-sm ${
+                state.length === 0 ? "hidden" : ""
+              }`}
+            >
+              {state.length}
+            </p>
+            <MdOutlineShoppingCart
+              className="text-3xl cursor-pointer"
+              onClick={() => setShowCart(true)}
+            />
           </div>
-          <ToggleIcon/>
+          <ToggleIcon />
         </div>
       </div>
       {showMenu && <SideMenu closeFunc={setShowMenu} />}

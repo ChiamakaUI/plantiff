@@ -1,14 +1,25 @@
 import { FiSearch } from "react-icons/fi";
 import GroupButton from "./components/GroupButton";
 import Post from "./components/Post";
-import getBlogCategories from "@/lib/getBlogCategories";
-import getPosts from "@/lib/getPosts";
+import { client } from '../lib/sanity';
+
+async function getData() {
+  const query = `*[_type == "post"]`;
+  const data = await client.fetch(query);
+  return data;
+}
+
+async function getCategories() {
+  const query = `*[_type == "blogCategory"]`;
+  const data = await client.fetch(query);
+  return data;
+}
 const Main = async () => {
-  const blogPosts = getPosts();
-  const blogCategories = getBlogCategories();
-  const [posts, categories] = await Promise.all([blogPosts, blogCategories]);
-  const { data } = posts;
-  const { data: category } = categories;
+  const data = await getData();
+  const blogCategories = await getCategories();
+
+  console.log({blogCategories});
+
   return (
     <div className="w-full">
       <div className="w-[94%] mx-auto lg:w-[72%] md:w-[92%] dark:text-white">
@@ -36,18 +47,18 @@ const Main = async () => {
         </p>
         <div className="scroll-smooth scrollbar-hide flex flex-row w-[94%] mx-auto overflow-x-auto justify-between lg:w-[75%] lg:mx-0 md:w-[93%] md:mx-0">
           <GroupButton name="All Posts" />
-          {category.map((cat) => (
-            <GroupButton key={cat.id} name={cat.attributes.name} />
+          {blogCategories.map((cat) => (
+            <GroupButton key={cat._id} name={cat.name} />
           ))}
         </div>
       </div>
       <div className="my-5 flex flex-col lg:flex-row md:flex-row flex-wrap w-[94%] md:w-[97%] lg:w-[82%] mx-auto lg:mb-20">
         {data.map((post) => (
           <Post
-            key={post.id}
-            desc={post.attributes.description}
-            title={post.attributes.title}
-            image={post.attributes.image.data.attributes.url}
+            key={post._id}
+            desc={post.description}
+            title={post.name}
+            image={post.image}
           />
         ))}
       </div>

@@ -1,9 +1,17 @@
 import Link from "next/link";
 import Product from "./Product";
-import getProducts from "@/lib/getProducts";
+import { client } from '../lib/sanity';
+
+async function getData() {
+  const query = `*[_type == "product"]`;
+  const data = await client.fetch(query);
+
+  return data;
+}
+
 const ProductsSnippet = async () => {
-  const res = await getProducts();
-  const { data } = res;
+  const data = await getData();
+
   return (
     <div className="my-5 w-[88%] mx-auto">
       <div className="flex flex-row items-center justify-between my-2">
@@ -16,11 +24,11 @@ const ProductsSnippet = async () => {
       <div className="flex flex-row w-full overflow-x-auto justify-between scroll-smooth scrollbar-hide">
         {data.slice(0, 7).map((pro) => (
           <Product
-            key={pro.id}
-            name={pro.attributes.name}
-            price={pro.attributes.price}
-            image={pro.attributes.images.data[0].attributes.url}
-            id={pro.id}
+          key={pro.id}
+            name={pro.name}
+            price={pro.price}
+            image={pro.image}
+            id={pro._id}
           />
         ))}
       </div>
