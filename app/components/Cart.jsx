@@ -54,7 +54,29 @@ const Cart = ({ closeFunc }) => {
             ))}
           </div>
         )}
-        <button className="bg-white text-[#004529] px-3.5 py-3 mt-6 rounded-full w-full uppercase font-semibold">Checkout</button>
+        {state.length > 0 && (
+          <div className="flex flex-col w-[85%] mx-auto text-sm md:text-base lg:text-lg">
+            <p className="mt-2">
+              Products in cart : {totalQuantity}{" "}
+              {totalQuantity === 1 ? "plant" : "plants"}
+            </p>
+            <p className="my-2">SubTotal : ₦{subTotal}</p>
+            <p className="mb-2">Shipping: ₦1500</p>
+            <p>Total: ₦{subTotal + 1500}</p>
+          </div>
+        )}
+
+        {state.length > 0 && (
+          <button
+            className="bg-white text-[#004529] px-3.5 py-3 mt-6 rounded-full w-full uppercase font-semibold"
+            onClick={() => {
+              router.push("/checkout");
+              closeFunc();
+            }}
+          >
+            Checkout
+          </button>
+        )}
       </div>
     </Modal>
   );

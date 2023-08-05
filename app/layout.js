@@ -2,6 +2,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { CartContextProvider } from "./context/cart";
 import { ThemeContextProvider } from "./context/theme";
+import { UserContextProvider } from "./context/user";
 import "./globals.css";
 
 export const metadata = {
@@ -15,11 +16,13 @@ export default function RootLayout({ children }) {
       <body className="bg-white dark:bg-[#0C0C0C]">
         <ThemeContextProvider>
           <CartContextProvider>
-            <main className="max-w-screen-2xl mx-auto">
-              <Navbar />
-              <div className="font-serif">{children}</div>
-              <Footer />
-            </main>
+            <UserContextProvider>
+              <main className="max-w-screen-2xl mx-auto">
+                <Navbar />
+                <div className="font-serif">{children}</div>
+                <Footer />
+              </main>
+            </UserContextProvider>
           </CartContextProvider>
         </ThemeContextProvider>
       </body>

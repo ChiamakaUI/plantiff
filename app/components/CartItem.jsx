@@ -24,8 +24,6 @@ const CartItem = ({ product, deleteFunc }) => {
     <>
       <div className="w-[92%] mx-auto flex flex-row justify-between md:hidden lg:hidden my-3.5">
         <Image
-          // src={product?.image}
-          // src={`http://127.0.0.1:1337${product?.image}`}
           src={urlFor(product?.image).url()}
           className="min-w-[100px] max-w-[100px] h-[95px]"
           height={100}
@@ -35,7 +33,8 @@ const CartItem = ({ product, deleteFunc }) => {
         <div className="w-[38%]">
           <p>{product?.name}</p>
           <Counter
-            num={count}
+            // num={count}
+            num={product?.quantity ?? count}
             increaseFunc={() => increaseQuantity(product)}
             decreaseFunc={() => decreaseQuantity(product)}
             containerStyles={"rounded-lg mt-6"}
@@ -49,14 +48,14 @@ const CartItem = ({ product, deleteFunc }) => {
               deleteFunc(product.id);
             }}
           />
-          <p className="mt-6 text-lg font-semibold">₦{count * product?.price}</p>
+          {/* <p className="mt-6 text-lg font-semibold">₦{count * product?.price}</p> */}
+          <p className="mt-6 text-lg font-semibold">₦{(product?.quantity ?? count) * product?.price}</p>
         </div>
       </div>
     
       <div className="w-[92%] lg:w-[85%]  mx-auto hidden md:flex lg:flex flex-row justify-between my-8">
         <div className="flex flex-row w-[60%]">
           <Image
-            // src={`http://127.0.0.1:1337${product?.image}`}
             src={urlFor(product?.image).url()}
             className="max-w-[100px] min-w-[100px] h-[95px]"
             height={100}
@@ -66,7 +65,8 @@ const CartItem = ({ product, deleteFunc }) => {
           <div className="ml-5 lg:ml-10 relative">
             <p className="text-sm font-semibold">{product?.name}</p>
             <Counter
-              num={count}
+              // num={count}
+              num={product?.quantity ?? count}
               increaseFunc={() => increaseQuantity(product)}
               decreaseFunc={() => decreaseQuantity(product)}
               containerStyles={"absolute bottom-4"}
@@ -74,7 +74,7 @@ const CartItem = ({ product, deleteFunc }) => {
           </div>
         </div>
         <div className="relative w-[15%]">
-          <p className="text-xl">₦{count * product?.price}</p>
+          <p className="text-xl">₦{(product?.quantity ?? count) * product?.price}</p>
           <p
             className="uppercase absolute bottom-4 cursor-pointer text-sm opacity-75"
             onClick={() => {

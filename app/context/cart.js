@@ -7,7 +7,6 @@ const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, []);
-  console.log(state)
   return (
     <CartContext.Provider value={{ state, dispatch }}>
       {children}

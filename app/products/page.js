@@ -12,9 +12,14 @@ async function getData() {
 async function getCategories() {
   const query = `*[_type == "category"]`;
   const data = await client.fetch(query);
-
   return data;
 }
+
+// async function filterCategories(name) {
+//   const query = `*[_type == "product" && category == "${name}"]`;
+//   const data = await client.fetch(query);
+//   return data;
+// }
 
 const Main = async () => {
   const categories = await getCategories();

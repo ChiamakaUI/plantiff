@@ -19,9 +19,9 @@ export default {
       title: "Image",
     },
     {
-        name: "description",
-        type: "string",
-        title: "Description",
-      },
+      name: "category",
+      type: "string",
+      title: "Category",
+    },
   ],
 };

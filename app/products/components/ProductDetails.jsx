@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { ACTION_TYPES } from "@/app/reducer/reducer";
 import useCounter from "@/app/hooks/useCounter";
 import Image from "next/image";
-import { urlFor } from '@/app/lib/sanityImageUrl';
+import { urlFor } from "@/app/lib/sanityImageUrl";
 const ProductDetails = ({ name, image, price, id, description }) => {
   const { state, dispatch } = useCartContext();
   const { count, increaseCount, decreaseCount } = useCounter();
@@ -55,7 +55,7 @@ const ProductDetails = ({ name, image, price, id, description }) => {
           <p>₦{price}</p>
         </div>
 
-          <Counter
+        <Counter
           num={count}
           increaseFunc={increaseCount}
           decreaseFunc={decreaseCount}
@@ -71,18 +71,17 @@ const ProductDetails = ({ name, image, price, id, description }) => {
         </div>
         <p className="text-sm my-3 lg:my-6 lg:text-lg">
           Featuring plump, silvery-green leaves with purple-hued margins that
-          fade into speckles towards the center of each leaf, Adromischus
-          maculatus Calico Hearts packs a ton of character into one 8-inch
-          plant! While ‘Calico Hearts’ makes a charming stand-alone specimen, or
-          a unique addition to an arrangement, be sure to keep this variety out
-          of the reach of curious pets and children, as its leaves do contain a
-          mild toxin. Adromischus maculatus Calico Hearts thrives when given
-          plenty of bright light, which will help retain its signature
-          coloration. It is particularly sensitive to overwatering, so ample
-          airflow, porous soil, and adequate drainage are all necessary to help
-          avoid rot. Be sure to allow the soil to dry all the way through before
-          watering again, and protect this tender succulent from frosty
-          temperatures below Zone 9.
+          fade into speckles towards the center of each leaf, {name} packs a ton
+          of character into one 8-inch plant! While {name} makes a charming
+          stand-alone specimen, or a unique addition to an arrangement, be sure
+          to keep this variety out of the reach of curious pets and children, as
+          its leaves do contain a mild toxin. {name} thrives when given plenty
+          of bright light, which will help retain its signature coloration. It
+          is particularly sensitive to overwatering, so ample airflow, porous
+          soil, and adequate drainage are all necessary to help avoid rot. Be
+          sure to allow the soil to dry all the way through before watering
+          again, and protect this tender succulent from frosty temperatures
+          below Zone 9.
         </p>
       </div>
     </div>
